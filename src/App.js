@@ -1,25 +1,48 @@
-import logo from './logo.svg';
+import { Component } from 'react';
 import './App.css';
+import MenuList from './components/MenuList'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// function App() {
+//   return (
+//     <div className="App">
+      
+//     </div>
+//   );
+// }
+
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      menuItems: [],
+    }
+
+    this.addToOrder = this.addToOrder.bind(this);
+  }
+
+  componentDidMount() {
+    const menuItems = [
+      {name: 'one'},
+      {name: 'two'},
+      {name: 'three'}
+    ];
+
+    this.setState({ menuItems: menuItems})
+  }
+
+  addToOrder(menuItem) {
+    console.log(menuItem);
+  }
+
+  render() {
+    
+    return (
+      <div>
+        <MenuList menuItems={this.state.menuItems} addToOrder={this.addToOrder} />
+      </div>
+    )
+  }
 }
 
 export default App;
